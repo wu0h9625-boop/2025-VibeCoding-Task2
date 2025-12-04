@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lynn · Frontend Dev - 個人品牌網站</title>
+    <title>Your Name · Frontend Dev - 個人品牌網站</title>
     
-    <meta name="description" content="這是Lynn前端工程師的個人品牌網站，展示專業技能、精選作品集與專案經驗。網站內容包含個人簡介、技術堆疊以及聯絡方式，歡迎瀏覽履歷與合作洽談。">
+    <meta name="description" content="這是一位前端工程師的個人品牌網站，展示專業技能、精選作品集與專案經驗。網站內容包含個人簡介、技術堆疊以及聯絡方式，歡迎瀏覽履歷與合作洽談。">
 
     <style>
         /* =========================================
@@ -183,10 +183,81 @@
             background-color: var(--color-bg-light);
         }
         
-        .about-grid {
+        .about-wrapper {
+            display: flex;
+            flex-direction: column; /* Mobile: Text top, Image bottom */
+            gap: 2.5rem;
+        }
+
+        .about-content {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
+        }
+
+        .about-text {
+            color: var(--color-text-muted);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .about-highlights {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .about-highlights li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .about-highlights li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .about-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* 關於我專用的次要按鈕樣式 */
+        .btn-outline {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 1rem;
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(6, 182, 212, 0.1);
+            color: var(--color-primary-hover);
+            border-color: var(--color-primary-hover);
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         /* CSS:ABOUT-END */
 
@@ -255,13 +326,23 @@
                 font-size: 3.5rem;
             }
             
-            .about-grid {
+            /* About Section RWD: Left Text, Right Image */
+            .about-wrapper {
                 flex-direction: row;
                 align-items: center;
             }
             
-            .about-grid > * {
+            .about-content {
                 flex: 1;
+                /* 讓文字區塊稍微寬一點，視覺比較平衡 */
+                flex-basis: 55%; 
+                padding-right: 2rem;
+            }
+
+            .about-image {
+                flex: 1;
+                flex-basis: 45%;
+                height: 100%;
             }
 
             .projects-grid {
@@ -318,18 +399,33 @@
         <section id="about" class="section section-about" aria-labelledby="about-heading">
             <div class="container">
                 <h2 id="about-heading" class="section-title">關於我</h2>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>你好，這是一個關於我的簡短介紹占位符。我熱愛前端技術，喜歡將設計稿完美轉換為程式碼。</p>
-                        <p>這裡目前是占位內容，未來會詳細介紹我的背景、學習歷程以及開發理念。</p>
-                        <div class="placeholder-note">
-                            <strong>給開發者：</strong>之後會用 Section SDD 的 Prompt 產生新的 About Section，請把新的程式碼整段貼在 SECTION:ABOUT-START 與 END 中間，取代這一區。
+                
+                <div class="about-wrapper">
+                    <div class="about-content">
+                        <p class="about-text">
+                            我目前是一名專注於使用者體驗的前端工程師，擅長使用現代化的前端技術堆疊來構建高效能的網站。我熱衷於解決複雜的介面問題，並致力於讓程式碼既乾淨又易於維護。
+                        </p>
+                        <p class="about-text">
+                            在開發之餘，我非常重視團隊溝通與知識分享。我相信好的產品來自於設計與開發的緊密合作，因此我喜歡把技術細節用淺顯易懂的方式說明清楚，確保專案推動順利。我的做事風格是：目標導向、重視細節且保持好奇心。
+                        </p>
+                        
+                        <ul class="about-highlights">
+                            <li>熟悉 RWD 響應式網頁設計與切版</li>
+                            <li>具備良好的跨部門溝通與協作能力</li>
+                            <li>重視程式碼品質與網頁效能優化</li>
+                        </ul>
+
+                        <div class="about-actions">
+                            <a href="#projects" class="btn">查看作品集</a>
+                            <a href="#contact" class="btn btn-outline">聯絡我</a>
                         </div>
                     </div>
+
                     <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="參加技術研討會或團隊合作的示意圖" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80" alt="正在專注寫程式碼的工程師背影與螢幕畫面" loading="lazy">
                     </div>
                 </div>
+
             </div>
         </section>
         <section id="skills" class="section section-skills" aria-labelledby="skills-heading">
